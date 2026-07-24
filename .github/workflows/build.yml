@@ -21,6 +21,9 @@ jobs:
           flutter-version: '3.24.0'
           channel: 'stable'
 
+      - name: Scaffold Android/iOS platform files
+        run: flutter create --platforms=android .
+
       - run: flutter pub get
       - run: flutter build apk --release
 
