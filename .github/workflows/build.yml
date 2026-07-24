@@ -20,9 +20,11 @@ jobs:
         with:
           flutter-version: '3.24.0'
           channel: 'stable'
-
-      - name: Scaffold Android/iOS platform files
-        run: flutter create --platforms=android .
+- name: Generate android folder separately
+        run: |
+          flutter create --platforms=android --org com.cheragh scaffold_temp
+          cp -r scaffold_temp/android ./android
+          rm -rf scaffold_temp
 
       - run: flutter pub get
       - run: flutter build apk --release
@@ -31,3 +33,4 @@ jobs:
         with:
           name: cheragh-apk
           path: build/app/outputs/flutter-apk/app-release.apk
+
